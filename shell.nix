@@ -3,6 +3,8 @@ let
   pkgs = import sources.nixpkgs { };
 
   basePackages = [
+    pkgs.nodePackages.pscid
+    pkgs.nodePackages.purescript-psa
     pkgs.nodePackages.purty
     pkgs.nixfmt
     pkgs.nodejs-16_x
@@ -11,8 +13,7 @@ let
 
   inputs = basePackages;
 
-  hooks = ''
-  '';
+  hooks = "";
 in pkgs.mkShell {
   buildInputs = inputs;
   shellHook = hooks;
