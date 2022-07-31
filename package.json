@@ -1,0 +1,24 @@
+{
+  "name": "try-purescript",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "@hansjhoffman",
+  "license": "MIT",
+  "engine": {
+    "node": ">=16"
+  },
+  "scripts": {
+    "format": "make format",
+    "start": "make run",
+    "test": "make test"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.2",
+    "@tailwindcss/typography": "^0.5.4",
+    "autoprefixer": "^10.4.8",
+    "postcss": "^8.4.14",
+    "prettier": "^2.7.1",
+    "tailwindcss": "^3.1.7",
+    "vite": "^3.0.4"
+  }
+}
