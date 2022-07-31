@@ -15,27 +15,29 @@ data Action
 type State
   = Int
 
-initialState :: forall i. i -> State
+initialState :: forall input. input -> State
 initialState _ = 0
 
-component :: forall output43 m44 t58 t61. H.Component t58 t61 output43 m44
+render :: forall m. State -> H.ComponentHTML Action () m
+render state =
+  HH.div_
+    [ HH.button [ HE.onClick \_ -> Decrement ] [ HH.text "-" ]
+    , HH.div_ [ HH.text $ show state ]
+    , HH.button [ HE.onClick \_ -> Increment ] [ HH.text "+" ]
+    ]
+
+handleAction :: forall output m. Action -> H.HalogenM State Action () output m Unit
+handleAction = case _ of
+  Increment -> H.modify_ \state -> state + 1
+  Decrement -> H.modify_ \state -> state - 1
+
+component :: forall query input output m. H.Component query input output m
 component =
   H.mkComponent
     { initialState
     , render
     , eval: H.mkEval $ H.defaultEval { handleAction = handleAction }
     }
-  where
-  render state =
-    HH.div_
-      [ HH.button [ HE.onClick \_ -> Decrement ] [ HH.text "-" ]
-      , HH.div_ [ HH.text $ show state ]
-      , HH.button [ HE.onClick \_ -> Increment ] [ HH.text "+" ]
-      ]
-
-  handleAction = case _ of
-    Increment -> H.modify_ \state -> state + 1
-    Decrement -> H.modify_ \state -> state - 1
 
 main :: Effect Unit
 main =
