@@ -15,7 +15,10 @@ data Action
 type State
   = Int
 
-initialState :: forall input. input -> State
+type Input
+  = Unit
+
+initialState :: Input -> State
 initialState _ = 0
 
 render :: forall m. State -> H.ComponentHTML Action () m
@@ -31,7 +34,7 @@ handleAction = case _ of
   Increment -> H.modify_ \state -> state + 1
   Decrement -> H.modify_ \state -> state - 1
 
-component :: forall query input output m. H.Component query input output m
+component :: forall query output m. H.Component query Input output m
 component =
   H.mkComponent
     { initialState
