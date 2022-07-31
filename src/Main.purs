@@ -27,6 +27,7 @@ render state =
   HH.div [ HP.class_ $ HH.ClassName "flex flex-col items-center justify-center mt-[25vh]" ]
     [ HH.button
         [ HP.class_ $ HH.ClassName "flex h-12 w-12 rounded items-center justify-center bg-indigo-500 text-white font-semibold text-lg"
+        , HP.attr (HH.AttrName "data-test-id") "btn-decrement"
         , HE.onClick \_ -> Decrement
         ]
         [ HH.text "-" ]
@@ -35,6 +36,7 @@ render state =
         ]
     , HH.button
         [ HP.class_ $ HH.ClassName "flex h-12 w-12 rounded items-center justify-center bg-indigo-500 text-white font-semibold text-lg"
+        , HP.attr (HH.AttrName "data-test-id") "btn-increment"
         , HE.onClick \_ -> Increment
         ]
         [ HH.text "+" ]
